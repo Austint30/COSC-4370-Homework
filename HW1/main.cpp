@@ -29,7 +29,7 @@ void FlipAndDraw(int originX, int originY, int x, int y) {
 // Midpoint Ellipse algorithm based off of Geeks for Geeks example:
 // https://www.geeksforgeeks.org/midpoint-ellipse-drawing-algorithm/
 // Ellipse formula: 0 = b²x² + a²y² - a²b²
-void MidpointEllipse(int centerX, int centerY, int a, int b) {
+void MidpointEllipse(int offsetX, int offsetY, float a, float b) {
   int x = 0;
   int y = b;
 
@@ -54,16 +54,16 @@ void MidpointEllipse(int centerX, int centerY, int a, int b) {
 
   while (dx < dy) {
     // Loop until the end of region 1 (slope is -1)
-    FlipAndDraw(centerX, centerY, x, y);
+    FlipAndDraw(offsetX, offsetY, x, y);
 
     if (p1 < 0) {
       // (x,y) is inside of ellipse. Draw East pixel.
       x++;
 
-      dx = 2 * b * b * x; // Update slope numerator
+      dx = 2.0 * b * b * x; // Update slope numerator
 
       // p1 + b²(2x+3) = p1 + 2b²x - 3b² = p1 + dx + 3b²
-      p1 = p1 + dx + (3 * b * b); // Update prediction
+      p1 = p1 + dx + (b * b); // Update prediction
 
     } else {
       // (x,y) is outside the ellipse. Draw SouthEast pixel.
@@ -88,7 +88,7 @@ void MidpointEllipse(int centerX, int centerY, int a, int b) {
 
   while (y >= 0) {
     // Region 2 ends when Y hits the x-axis
-    FlipAndDraw(centerX, centerY, x, y);
+    FlipAndDraw(offsetX, offsetY, x, y);
 
     if (p2 > 0) {
       // (x,y) is outside of the ellipse. Draw south pixel.
@@ -115,8 +115,8 @@ void MidpointEllipse(int centerX, int centerY, int a, int b) {
 
 int main() {
   g_bmp.fill_region(0, 0, 800, 800, 0, 0, 0, 0);
-  int ra = 12 * 64;
-  int rb = 6 * 64;
+  float ra = 12.0 * 64.0;
+  float rb = 6.0 * 64.0;
   MidpointEllipse(0, 400, ra, rb);
   g_bmp.write("output.bmp");
 }
