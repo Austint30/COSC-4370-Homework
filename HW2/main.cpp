@@ -45,6 +45,8 @@ float shininess[] = { 50.0 };
 void problem1() {
 
 	int numTeapots = 10;
+	float radius = 1.0;
+	float vOffset = 0.3;
 
 	for (int i = 0; i < numTeapots; i++)
 	{
@@ -55,7 +57,7 @@ void problem1() {
 		glRotatef(deg, 0, 0, 1);
 		
 		// Translate right and up a little bit
-		glTranslatef(1.0, 0.30, 0.0);
+		glTranslatef(radius, vOffset, 0.0);
 		
 		// Tilt teapot forward a little bit
 		glRotatef(5.0, 0, 0, -1);
