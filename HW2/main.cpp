@@ -47,6 +47,7 @@ void problem1() {
 	int numTeapots = 10;
 	float radius = 1.0;
 	float vOffset = 0.3;
+	float teapotTilt = 5.0;
 
 	for (int i = 0; i < numTeapots; i++)
 	{
@@ -60,7 +61,7 @@ void problem1() {
 		glTranslatef(radius, vOffset, 0.0);
 		
 		// Tilt teapot forward a little bit
-		glRotatef(5.0, 0, 0, -1);
+		glRotatef(teapotTilt, 0, 0, -1);
 
 		glutSolidTeapot(0.1);
 		glPopMatrix();
@@ -98,15 +99,18 @@ void problem2() {
 }
 
 void problem3() {
-    int numObjsV = 6;
+    int numRows = 6;
 	int numObjsH = 6;
 	float objSize = 0.1;
-	float horizSpacing = objSize + 0.20;
-	float vertSpacing = objSize + 0.2;
+	float horizSpacing = 0.20;
+	float vertSpacing = 0.2;
+
+	horizSpacing = objSize + horizSpacing;
+	vertSpacing = objSize + vertSpacing;
 	
 	
 	float width = (numObjsH * horizSpacing);
-	float height = (numObjsV * vertSpacing);
+	float height = (numRows * vertSpacing);
 
 
 	// Put coordinate system at center of world
@@ -114,7 +118,7 @@ void problem3() {
 	glTranslatef(-width/2, height/2 - vertSpacing, 0.0);
 
 	// Draw each row of the triangle, reducing the number of teapots per row by one
-	for (int row = 0; row < numObjsV; row++) {
+	for (int row = 0; row < numRows; row++) {
 		int currRowObjCnt = numObjsH - row;
 
 		float rowWidth = (currRowObjCnt * horizSpacing);
