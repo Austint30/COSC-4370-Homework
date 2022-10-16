@@ -196,6 +196,9 @@ int main()
         // TODO: set up the project matrix
 
 
+        // Used from https://learnopengl.com/Getting-started/Coordinate-Systems
+        projection = glm::perspective(glm::radians(45.0), (double)WIDTH/(double)HEIGHT, 0.01, 100.0);
+
         // Get the uniform locations
         GLint modelLoc = glGetUniformLocation(lightingShader.Program, "model");
         GLint viewLoc  = glGetUniformLocation(lightingShader.Program,  "view");
