@@ -193,7 +193,7 @@ int main()
         glm::mat4 view;
         view = camera.GetViewMatrix();
         glm::mat4 projection;
-        // TODO: set up the project matrix
+        // Set up the project matrix
 
 
         // Used from https://learnopengl.com/Getting-started/Coordinate-Systems
