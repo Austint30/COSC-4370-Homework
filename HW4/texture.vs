@@ -15,4 +15,5 @@ void main()
 {
     // TODO: Your code here
     // Remember to set gl_Position (correctly) or you will get a black screen...
+    gl_Position = projection * view * model * vec4(position, 1.0);
 }

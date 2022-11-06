@@ -186,6 +186,9 @@ int main()
         glm::mat4 projection;
         // TODO: Set up the project matrix
 
+        // Copied from HW3
+        // Used from https://learnopengl.com/Getting-started/Coordinate-Systems
+        projection = glm::perspective(glm::radians(45.0), (double)WIDTH/(double)HEIGHT, 0.01, 100.0);
 
         // Get the uniform locations
         GLint modelLoc = glGetUniformLocation(textureShader.Program, "model");
