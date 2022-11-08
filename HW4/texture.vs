@@ -17,5 +17,7 @@ void main()
     // Remember to set gl_Position (correctly) or you will get a black screen...
     gl_Position = projection * view * model * vec4(position, 1.0);
 
-    UV = vertexUV;
+    // Fix for inverted y coordinate thanks to this StackOverflow answer:
+    // https://stackoverflow.com/a/36107154/2901480
+    UV = vec2(vertexUV.x, 1.0 - vertexUV.y);
 }
